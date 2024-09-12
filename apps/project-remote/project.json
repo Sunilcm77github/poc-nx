@@ -1,31 +1,31 @@
 {
-  "name": "orchestrator",
+  "name": "project-remote",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/orchestrator/src",
+  "sourceRoot": "apps/project-remote/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/orchestrator",
-        "index": "apps/orchestrator/src/index.html",
-        "main": "apps/orchestrator/src/main.ts",
+        "outputPath": "dist/apps/project-remote",
+        "index": "apps/project-remote/src/index.html",
+        "main": "apps/project-remote/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/orchestrator/tsconfig.app.json",
+        "tsConfig": "apps/project-remote/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/orchestrator/public"
+            "input": "apps/project-remote/public"
           }
         ],
-        "styles": ["apps/orchestrator/src/styles.scss"],
+        "styles": ["apps/project-remote/src/styles.scss"],
         "scripts": [],
         "customWebpackConfig": {
-          "path": "apps/orchestrator/webpack.config.ts"
+          "path": "apps/project-remote/webpack.config.ts"
         }
       },
       "configurations": {
@@ -42,7 +42,10 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/project-remote/webpack.prod.config.ts"
+          }
         },
         "development": {
           "buildOptimizer": false,
@@ -56,17 +59,17 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@nx/angular:module-federation-dev-server",
+      "executor": "@nx/angular:dev-server",
       "options": {
-        "port": 4200,
-        "publicHost": "http://localhost:4200"
+        "port": 4201,
+        "publicHost": "http://localhost:4201"
       },
       "configurations": {
         "production": {
-          "buildTarget": "orchestrator:build:production"
+          "buildTarget": "project-remote:build:production"
         },
         "development": {
-          "buildTarget": "orchestrator:build:development"
+          "buildTarget": "project-remote:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -74,7 +77,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "orchestrator:build"
+        "buildTarget": "project-remote:build"
       }
     },
     "lint": {
@@ -84,15 +87,24 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/orchestrator/jest.config.ts"
+        "jestConfig": "apps/project-remote/jest.config.ts"
       }
     },
     "serve-static": {
       "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
       "options": {
-        "buildTarget": "orchestrator:build",
-        "port": 4200,
-        "spa": true
+        "buildTarget": "project-remote:build",
+        "port": 4201,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "project-remote:build:development"
+        },
+        "production": {
+          "buildTarget": "project-remote:build:production"
+        }
       }
     }
   }

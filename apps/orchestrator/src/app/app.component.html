@@ -1,19 +1,4 @@
-<nav class="navbar">
-    <div class="container">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" routerLinkActive="Active" [routerLinkActiveOptions]="{exact: true}"
-                    href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLinkActive="Active" [routerLinkActiveOptions]="{exact: true}"
-                    routerLink="/projects">Project</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLinkActive="Active" [routerLinkActiveOptions]="{exact: true}"
-                    href="task">Task</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<ul class="remote-menu">
+  <li><a routerLink="/">Home</a></li>
+</ul>
 <router-outlet></router-outlet>

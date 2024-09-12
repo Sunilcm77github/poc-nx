@@ -19,8 +19,9 @@
       "@gen1/project-lib": ["libs/project-lib/src/index.ts"],
       "@gen1/shared-lib": ["libs/shared-lib/src/index.ts"],
       "@gen1/task-lib": ["libs/task-lib/src/index.ts"],
-      "project/Routes": ["apps/project/src/app/remote-entry/entry.routes.ts"],
-      "task/Routes": ["apps/task/src/app/remote-entry/entry.routes.ts"]
+      "project-remote/Routes": [
+        "apps/project-remote/src/app/remote-entry/entry.routes.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
